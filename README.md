@@ -34,3 +34,11 @@ Jaeger может умереть, поэтому чуть позже будет 
 
 3) Информация о трейсах, что когда вызывалось и сколько заняло
 ![Jaeger3](/images/jaeger3.png)
+
+Репозитории:
+ 1. UI: https://github.com/darktw1nk/microservices-ui
+ 2. Worker Service: https://github.com/darktw1nk/microservices-worker-service
+ 3. Statistics Service: https://github.com/darktw1nk/microservices-statistics-service
+ 4. Project Service: https://github.com/darktw1nk/microservices-project-service
+ 5. Company Service: https://github.com/darktw1nk/microservices-company-service
+ 6. User Service: https://github.com/darktw1nk/microservices-user-service
