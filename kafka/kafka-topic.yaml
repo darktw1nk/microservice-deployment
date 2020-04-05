@@ -1,0 +1,74 @@
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: company-events
+  labels:
+    strimzi.io/cluster: "my-cluster"
+  namespace: kafka-cluster
+spec:
+  partitions: 3
+  replicas: 1
+
+---
+
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: users-topic
+  labels:
+    strimzi.io/cluster: "my-cluster"
+  namespace: kafka-cluster
+spec:
+  partitions: 3
+  replicas: 1
+---
+
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: users-registered
+  labels:
+    strimzi.io/cluster: "my-cluster"
+  namespace: kafka-cluster
+spec:
+  partitions: 3
+  replicas: 1
+---
+
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: users-store
+  labels:
+    strimzi.io/cluster: "my-cluster"
+  namespace: kafka-cluster
+spec:
+  partitions: 3
+  replicas: 1
+
+---
+
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: company-statistics
+  labels:
+    strimzi.io/cluster: "my-cluster"
+  namespace: kafka-cluster
+spec:
+  partitions: 3
+  replicas: 1
+
+---
+
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: project-statistics
+  labels:
+    strimzi.io/cluster: "my-cluster"
+  namespace: kafka-cluster
+spec:
+  partitions: 3
+  replicas: 1
+

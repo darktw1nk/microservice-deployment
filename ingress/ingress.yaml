@@ -1,0 +1,34 @@
+apiVersion: cloud.google.com/v1beta1
+kind: BackendConfig
+metadata:
+  name: my-backend-config
+spec:
+  timeoutSec: 43200
+
+---
+
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /api/company/*
+        backend:
+          serviceName: company-2
+          servicePort: 80
+      - path: /api/user/*
+        backend:
+          serviceName: user-2
+          servicePort: 80
+      - path: /api/project/*
+        backend:
+          serviceName: project-service
+          servicePort: 80
+      - path: /api/worker/*
+        backend:
+          serviceName: worker-service
+          servicePort: 80

@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    tier: ui
+  name: ui
+spec:
+  selector:
+    tier: ui
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  type: LoadBalancer
+
+---
+
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ui
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ui
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 50
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui
+  labels:
+    tier: ui
+    app: microservices
+  annotations:
+    "sidecar.jaegertracing.io/inject": simplest
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: ui
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        tier: ui
+    spec:
+      containers:
+        - name: ui
+          image: darktw1nk/ui:1.0.2
+          livenessProbe:
+              httpGet:
+                path: /
+                port: 80
+              initialDelaySeconds: 5
+              periodSeconds: 3
+          readinessProbe:
+              httpGet:
+                path: /
+                port: 80
+              initialDelaySeconds: 5
+              periodSeconds: 3
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              memory: "4Gi"
+              cpu: "2000m"
+            requests:
+              memory: "256Mi"
+              cpu: "50m"
