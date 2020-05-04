@@ -1,5 +1,7 @@
 # Deployment configurations
 
+Очень базовый аналог Game Dev Tycoon
+Делался, что бы поиграться с kubernetes, kafka, jaeger, GraalVM и прочими интересными вещами
 Потыкать результат можно тут:http://35.228.98.121/
 
 Так же есть:
